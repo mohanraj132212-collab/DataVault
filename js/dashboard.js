@@ -105,7 +105,9 @@ function renderDashboardItems() {
   if (filtered.length === 0) {
     grid.innerHTML = `
       <div class="empty-state" style="grid-column: 1 / -1;">
-        <div class="empty-state-icon">🔒</div>
+        <div class="empty-state-icon" style="display:flex; justify-content:center; align-items:center;">
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="var(--primary)"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+        </div>
         <div class="empty-state-title">No items found</div>
         <div class="empty-state-desc">Your vault is clean. Click the + button below to add your first item to DataVault.</div>
         <button class="btn btn-primary" onclick="document.getElementById('fabMain').click()">Add First Item</button>
@@ -115,11 +117,11 @@ function renderDashboardItems() {
   }
 
   const iconMap = {
-    'document': '📄',
-    'photo': '🖼️',
-    'note': '📝',
-    'book': '📚',
-    'visiting-card': '💼'
+    'document': `<svg width="48" height="48" viewBox="0 0 24 24" fill="#6C3BFF"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>`,
+    'photo': `<svg width="48" height="48" viewBox="0 0 24 24" fill="#FF4F9A"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>`,
+    'note': `<svg width="48" height="48" viewBox="0 0 24 24" fill="#00B894"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>`,
+    'book': `<svg width="48" height="48" viewBox="0 0 24 24" fill="#0984E3"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/></svg>`,
+    'visiting-card': `<svg width="48" height="48" viewBox="0 0 24 24" fill="#6C5CE7"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4V8h16v10zm-6-7h4v2h-4zm0 3h4v2h-4zm-8-3h5v5H6z"/></svg>`
   };
 
   grid.innerHTML = filtered.map(item => `

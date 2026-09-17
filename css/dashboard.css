@@ -74,6 +74,7 @@
   font-size: 1.6rem;
   font-weight: 800;
   color: var(--text-primary);
+}
 
 .greeting-subtext {
   font-size: 0.95rem;
