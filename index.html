@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#FF4F9A">
+  <meta name="description" content="DataVault - Everything important, in one place. Secure digital vault for documents, photos, notes, books, and visiting cards.">
+  <title>DataVault - Everything important, in one place</title>
+  
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body class="auth-page">
+
+  <div class="splash-container animate-fade">
+    <img src="assets/logo.svg" alt="DataVault Logo" class="splash-logo">
+    <h1 class="text-3xl font-extrabold text-gradient">DataVault</h1>
+    <p class="splash-tagline">Everything important, in one place.</p>
+
+    <div class="splash-features">
+      <div class="splash-feature-card">
+        <span class="splash-feature-icon">📄</span>
+        <div>
+          <div class="font-bold text-sm">Documents</div>
+          <div class="text-xs text-muted">Aadhaar, PAN & IDs</div>
+        </div>
+      </div>
+      <div class="splash-feature-card">
+        <span class="splash-feature-icon">🖼️</span>
+        <div>
+          <div class="font-bold text-sm">Photos</div>
+          <div class="text-xs text-muted">Precious memories</div>
+        </div>
+      </div>
+      <div class="splash-feature-card">
+        <span class="splash-feature-icon">📝</span>
+        <div>
+          <div class="font-bold text-sm">Notes</div>
+          <div class="text-xs text-muted">Secure notes</div>
+        </div>
+      </div>
+      <div class="splash-feature-card">
+        <span class="splash-feature-icon">💼</span>
+        <div>
+          <div class="font-bold text-sm">Visiting Cards</div>
+          <div class="text-xs text-muted">Digital business cards</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <a href="login.html" class="btn btn-primary btn-block">Sign In</a>
+      <a href="register.html" class="btn btn-secondary btn-block">Create New Vault</a>
+    </div>
+
+    <div style="margin-top:24px;">
+      <button class="btn-icon theme-toggle-btn" title="Toggle Theme">🌙</button>
+    </div>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

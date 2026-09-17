@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#FF4F9A">
+  <title>Login - DataVault</title>
+  
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body class="auth-page">
+
+  <div class="auth-container animate-fade">
+    <div style="position:absolute; top:20px; right:20px;">
+      <button class="btn-icon theme-toggle-btn" title="Toggle Theme">🌙</button>
+    </div>
+
+    <div class="auth-brand">
+      <img src="assets/logo.svg" alt="DataVault" class="auth-logo">
+      <h1 class="auth-title">Welcome Back</h1>
+      <p class="auth-subtitle">Sign in to access your digital vault</p>
+    </div>
+
+    <form id="loginForm">
+      <div class="form-group">
+        <label class="form-label" for="loginEmail">Email Address</label>
+        <input type="email" id="loginEmail" class="form-input" placeholder="name@example.com" required autocomplete="email">
+      </div>
+
+      <div class="form-group">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <label class="form-label" for="loginPassword">Password</label>
+          <a href="#" id="forgotPasswordBtn" class="text-xs font-semibold" style="color:var(--primary);">Forgot Password?</a>
+        </div>
+        <input type="password" id="loginPassword" class="form-input" placeholder="••••••••" required autocomplete="current-password">
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block" style="margin-top:10px;">
+        Sign In to Vault 🔒
+      </button>
+    </form>
+
+    <div class="auth-footer-text">
+      Don't have a vault yet? <a href="register.html" class="font-bold">Create Vault</a>
+    </div>
+  </div>
+
+  <!-- Forgot Password Modal -->
+  <div class="modal-overlay" id="forgotPasswordModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Reset Password</h3>
+        <button class="btn-icon" data-dismiss="modal">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="text-sm text-secondary" style="margin-bottom:16px;">
+          Enter your registered email address and we'll send you a password reset link.
+        </p>
+        <div class="form-group">
+          <label class="form-label" for="resetEmailInput">Email Address</label>
+          <input type="email" id="resetEmailInput" class="form-input" placeholder="name@example.com">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button class="btn btn-primary" id="sendResetBtn">Send Link</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { loginUser, resetPassword } from './js/auth.js';
+    import { toggleModal, showToast } from './js/ui.js';
+
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPassword').value;
+
+      try {
+        await loginUser(email, password);
+        window.location.href = 'dashboard.html';
+      } catch (err) {}
+    });
+
+    document.getElementById('forgotPasswordBtn').addEventListener('click', (e) => {
+      e.preventDefault();
+      toggleModal('forgotPasswordModal', true);
+    });
+
+    document.getElementById('sendResetBtn').addEventListener('click', async () => {
+      const email = document.getElementById('resetEmailInput').value.trim();
+      if (!email) {
+        showToast('Please enter your email.', 'error');
+        return;
+      }
+      try {
+        await resetPassword(email);
+        toggleModal('forgotPasswordModal', false);
+      } catch (err) {}
+    });
+  </script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
